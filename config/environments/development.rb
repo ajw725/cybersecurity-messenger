@@ -1,5 +1,9 @@
+# frozen_string_literal: true
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
+
+  config.hosts << 'andrewsapp.local'
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -32,9 +36,25 @@ Rails.application.configure do
   config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  if ENV['REAL_EMAILS']&.to_s == 'true'
+    config.action_mailer.raise_delivery_errors = true
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: ENV['SMTP_ADDRESS'],
+      port: 587,
+      domain: 'andrewsapp.app',
+      user_name: Rails.application.credentials.smtp_username,
+      password: Rails.application.credentials.smtp_password,
+      authentication: :login,
+      enable_starttls_auto: true
+    }
+  else
+    config.action_mailer.raise_delivery_errors = false
+    config.action_mailer.delivery_method = :letter_opener
+    config.action_mailer.perform_deliveries = true
+  end
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
