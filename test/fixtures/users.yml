@@ -7,4 +7,9 @@
 one:
   username: "user one"
   email: "user1@example.com"
-
+two:
+  username: "user two"
+  email: "user2@example.com"
+sender:
+  username: "message sender"
+  email: "sender@example.com"
