@@ -1,0 +1,12 @@
+[Unit]
+Description=Puma HTTP Server Accept Sockets
+
+[Socket]
+ListenStream=/var/www/messenger/tmp/sockets/puma.sock
+
+NoDelay=true
+ReusePort=true
+Backlog=1024
+
+[Install]
+WantedBy=sockets.target

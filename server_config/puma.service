@@ -1,0 +1,16 @@
+[Unit]
+Description=Puma HTTP Server Accept Sockets
+After=network.target
+Requires=puma.socket
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/var/www/messenger
+
+ExecStart=puma -C config/puma.rb
+
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
