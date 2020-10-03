@@ -7,9 +7,8 @@ Requires=puma.socket
 Type=simple
 User=ubuntu
 WorkingDirectory=/var/www/messenger
-
-ExecStart=puma -C config/puma.rb
-
+PIDFile=/var/www/messenger/puma/tmp/pids/puma.pid
+ExecStart=/var/www/messenger/puma -C config/puma.rb
 Restart=always
 
 [Install]
