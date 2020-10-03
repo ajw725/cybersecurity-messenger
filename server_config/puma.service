@@ -8,8 +8,10 @@ Type=simple
 User=ubuntu
 WorkingDirectory=/var/www/messenger
 PIDFile=/var/www/messenger/puma/tmp/pids/puma.pid
-ExecStart=/var/www/messenger/puma -C config/puma.rb
+EnvironmentFile=/etc/systemd/system/puma.service.d/env.conf
+ExecStart=/var/www/messenger/sbin/puma -C /var/www/messenger/config/puma.rb
 Restart=always
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target

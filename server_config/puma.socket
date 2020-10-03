@@ -2,6 +2,7 @@
 Description=Puma HTTP Server Accept Sockets
 
 [Socket]
+SocketUser=ubuntu
 ListenStream=0.0.0.0:9292
 
 NoDelay=true
