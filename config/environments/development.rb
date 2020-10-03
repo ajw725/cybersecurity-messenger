@@ -4,6 +4,11 @@ Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
   config.hosts << 'andrewsapp.local'
+  config.webpacker.check_yarn_integrity = false # because docker
+  config.log_level = ENV.fetch('LOG_LEVEL', :debug)
+  logger = ActiveSupport::Logger.new(STDOUT)
+  logger.formatter = config.log_formatter
+  config.logger = ActiveSupport::TaggedLogging.new(logger)
 
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
