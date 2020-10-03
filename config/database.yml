@@ -20,13 +20,16 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= Rails.application.credentials.db_host[Rails.env.to_sym] %>
+  username: <%= Rails.application.credentials.db_username[Rails.env.to_sym] %>
+  password: <%= Rails.application.credentials.db_password[Rails.env.to_sym] %>
 
 development:
   <<: *default
-  database: messenger_development
-  host: postgres
+  host: localhost
   username: postgres
-  password: password
+  database: messenger_development
+  password:
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -84,5 +87,3 @@ test:
 production:
   <<: *default
   database: messenger_production
-  username: messenger
-  password: <%= ENV['MESSENGER_DATABASE_PASSWORD'] %>
