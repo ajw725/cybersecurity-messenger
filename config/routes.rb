@@ -2,7 +2,7 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  root to: 'home#index'
+  root to: 'messages#index'
   get '/healthcheck', to: 'healthcheck#index'
 
   devise_for :users,
@@ -18,5 +18,6 @@ Rails.application.routes.draw do
 
   resources :messages, only: [:index]
 
-  get '/dbdump', to: 'database_dump#index'
+  get '/dbdump', to: 'database_dumps#index', as: 'database_dumps'
+  get '/dump_database', to: 'database_dumps#dump', as: 'dump_database'
 end

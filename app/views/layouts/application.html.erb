@@ -6,22 +6,35 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+    />
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <% if user_signed_in? %>
-      <div>
-        <%= link_to 'Log Out', '/logout', method: :delete %>
+    <div class="main-content">
+      <div class="ui container">
+        <% flash.each do |type, message| %>
+          <div class="ui centered grid flash-container <%= type %>">
+            <div class="column centered row message">
+              <p><%= message %></p>
+            </div>
+          </div>
+        <% end %>
+
+        <% if user_signed_in? %>
+          <div>
+            <%= link_to 'Log Out', '/logout', method: :delete %>
+          </div>
+        <% end %>
+
+
+        <%= yield %>
       </div>
-    <% end %>
-
-    <div>
-      <% flash.each do |type, message| %>
-        <p><%= message %></p>
-      <% end %>
     </div>
-
-    <%= yield %>
   </body>
 </html>
