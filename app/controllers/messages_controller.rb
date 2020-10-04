@@ -13,10 +13,7 @@ class MessagesController < ApplicationController # :nodoc:
   end
 
   def create
-    @message = Message.new(message_params)
-    render(:new) && return unless @message.valid?
-
-    @message.recipient_id = recipient_id
+    @message = Message.new(message_params.to_h.merge(recipient_id: recipient_id))
     if @message.save
       redirect_to messages_path, flash: { notice: 'Message sent.' }
     else
@@ -33,6 +30,8 @@ class MessagesController < ApplicationController # :nodoc:
   end
 
   def recipient_id
+    return if params[:recipient].blank?
+
     recip = User.find_by(username: params[:recipient])
     raise ActiveRecord::RecordNotFound, 'Recipient not found' unless recip
 
