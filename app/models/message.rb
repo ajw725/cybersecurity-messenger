@@ -13,6 +13,7 @@ class Message < ApplicationRecord
 
   validates :subject, :body, presence: true
   validate :check_recipient, on: :create
+  validate :self_message
   before_create :set_recipient
 
   private
@@ -30,5 +31,11 @@ class Message < ApplicationRecord
     raise InvalidRecipientError, 'RecipientNotFound' unless recip
 
     self.recipient_id = recip.id
+  end
+
+  def self_message
+    return unless sender && recipient_username && sender.username == recipient_username
+
+    errors.add :base, 'You cannot send messages to yourself.'
   end
 end

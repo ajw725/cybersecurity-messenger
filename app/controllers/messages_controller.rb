@@ -14,6 +14,7 @@ class MessagesController < ApplicationController # :nodoc:
 
   def create
     @message = Message.new(message_params)
+    @message.sender_id = current_user.id
     @message.save!
     redirect_to messages_path, flash: { notice: 'Message sent.' }
   rescue Message::InvalidRecipientError # hide whether recipient exists
