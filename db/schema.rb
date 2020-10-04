@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_03_235108) do
+ActiveRecord::Schema.define(version: 2020_10_04_010203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "messages", force: :cascade do |t|
-    t.string "subject_ciphertext"
     t.text "body_ciphertext"
     t.bigint "sender_id"
     t.bigint "recipient_id"

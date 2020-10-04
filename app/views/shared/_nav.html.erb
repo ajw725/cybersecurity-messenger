@@ -1,7 +1,17 @@
 <% if user_signed_in? %>
   <nav>
-    <%= link_to destroy_user_session_path, method: :delete do %>
-      <div>Log Out</div>
-    <% end %>
+    <div class="ui grid">
+      <div class="four column row">
+        <div class="left floated column">
+          <p>Welcome, <%= current_user.username %></p>
+        </div>
+
+        <div class="right floated column align-right">
+          <%= link_to destroy_user_session_path, method: :delete do %>
+            <span>Log Out</span>
+          <% end %>
+        </div>
+      </div>
+    </div>
   </nav>
 <% end %>

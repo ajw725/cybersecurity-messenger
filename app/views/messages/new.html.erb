@@ -14,21 +14,15 @@
         </div>
 
         <div class="field">
-          <%= f.label :subject %>
-          <div class="ui input">
-            <%= f.text_field :subject %>
-          </div>
-        </div>
-
-        <div class="field">
           <%= f.label :body %>
           <div class="ui input">
             <%= f.text_area :body, rows: 10 %>
           </div>
         </div>
 
-        <div class="field">
+        <div class="form-buttons">
           <%= f.submit 'Send', class: 'ui button primary' %>
+          <%= link_to 'Cancel', messages_path, class: 'ui button cancel' %>
         </div>
       <% end %>
     </div>

@@ -31,6 +31,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 gem 'devise', '~> 4.7.2'
+gem 'kaminari', '~> 1.2', '>= 1.2.1'
 gem 'lockbox', '~> 0.4.8'
 gem 'validates_email_format_of', '~> 1.6.3'
 

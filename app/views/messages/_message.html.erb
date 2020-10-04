@@ -1,9 +1,5 @@
-<div>
-  <strong>Subject:</strong>
-  <p><%= message.subject %></p>
-</div>
-
-<div>
-  <strong>Body:</strong>
-  <p><%= message.body %></p>
+<div class="ui one column grid">
+  <div class="column">
+    <%= message.sender.username %> says: <%= message.body %>
+  </div>
 </div>

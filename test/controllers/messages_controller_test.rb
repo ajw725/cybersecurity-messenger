@@ -12,10 +12,9 @@ class MessagesControllerTest < ActionDispatch::IntegrationTest
     user1.confirm
     user2 = users(:two)
     sender = users(:sender)
-    @message1 = Message.create!(sender: sender, recipient: user1, subject: 'hello', body: 'message')
-    @message2 = Message.create!(sender: sender, recipient: user2, subject: 'private', body: 'message')
-    @message3 = Message.create!(sender: user1, recipient: user2, subject: 'sent', body: 'sent')
-    @message4 = Message.create!(sender: user2, recipient: sender, subject: 'abc', body: 'def')
+    @message2 = Message.create!(sender: sender, recipient: user2, body: 'message')
+    @message3 = Message.create!(sender: user1, recipient: user2, body: 'sent')
+    @message4 = Message.create!(sender: user2, recipient: sender, body: 'def')
 
     sign_in user1
   end

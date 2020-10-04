@@ -1,17 +1,17 @@
 # frozen_string_literal: true
 
-# a private message between users. subject and body are encrypted in database.
+# a private message between users. body is encrypted in database.
 class Message < ApplicationRecord
   class InvalidRecipientError < StandardError; end
 
-  encrypts :subject, :body
+  encrypts :body
 
   attr_accessor :recipient_username
 
   belongs_to :sender, class_name: 'User', optional: true # in case user is deleted
   belongs_to :recipient, class_name: 'User', optional: true # in case user is deleted
 
-  validates :subject, :body, presence: true
+  validates_presence_of :body
   validate :check_recipient, on: :create
   validate :self_message
   before_create :set_recipient

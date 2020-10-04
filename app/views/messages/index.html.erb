@@ -8,6 +8,4 @@
 
 <h2>Received Messages:</h2>
 <%= render @messages %>
-
-<h2>Sent Messages:</h2>
-<%= render @sent_messages %>
+<%= paginate @messages %>

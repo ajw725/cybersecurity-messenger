@@ -4,8 +4,9 @@ class MessagesController < ApplicationController # :nodoc:
   before_action :authenticate_user!
 
   def index
-    @messages = current_user.messages
-    @sent_messages = current_user.sent_messages
+    page = params[:page] || 1
+    per = params[:per] || 20
+    @messages = current_user.messages.order(created_at: :desc).page(page).per(per)
   end
 
   def new
@@ -26,6 +27,6 @@ class MessagesController < ApplicationController # :nodoc:
   private
 
   def message_params
-    params.require(:message).permit(:subject, :body, :recipient_username)
+    params.require(:message).permit(:body, :recipient_username)
   end
 end
