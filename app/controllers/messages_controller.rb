@@ -13,28 +13,18 @@ class MessagesController < ApplicationController # :nodoc:
   end
 
   def create
-    @message = Message.new(message_params.to_h.merge(recipient_id: recipient_id))
-    if @message.save
-      redirect_to messages_path, flash: { notice: 'Message sent.' }
-    else
-      render :new
-    end
-  rescue ActiveRecord::RecordNotFound # hide whether recipient exists
+    @message = Message.new(message_params)
+    @message.save!
     redirect_to messages_path, flash: { notice: 'Message sent.' }
+  rescue Message::InvalidRecipientError # hide whether recipient exists
+    redirect_to messages_path, flash: { notice: 'Message sent.' }
+  rescue
+    render :new
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:subject, :body)
-  end
-
-  def recipient_id
-    return if params[:recipient].blank?
-
-    recip = User.find_by(username: params[:recipient])
-    raise ActiveRecord::RecordNotFound, 'Recipient not found' unless recip
-
-    recip.id
+    params.require(:message).permit(:subject, :body, :recipient_username)
   end
 end

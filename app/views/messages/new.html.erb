@@ -7,9 +7,9 @@
         <%= render 'shared/error_messages', model: @message %>
 
         <div class="field">
-          <label for="recipient">Recipient</label>
+          <%= f.label :recipient_username %>
           <div class="ui input">
-            <%= text_field_tag 'recipient' %>
+            <%= f.text_field :recipient_username %>
           </div>
         </div>
 
