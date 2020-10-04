@@ -39,6 +39,7 @@ Rails.application.configure do
   config.action_dispatch.default_headers = {
     'X-Frame-Options' => 'DENY'
   }
+  config.action_dispatch.cookies_same_site_protection = :strict
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
