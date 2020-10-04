@@ -26,12 +26,7 @@
           </div>
         <% end %>
 
-        <% if user_signed_in? %>
-          <div>
-            <%= link_to 'Log Out', '/logout', method: :delete %>
-          </div>
-        <% end %>
-
+        <%= render 'shared/nav' %>
 
         <%= yield %>
       </div>

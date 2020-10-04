@@ -1,0 +1,25 @@
+form {
+  .field {
+    padding: 10px 0;
+  }
+
+  .flash-container {
+    display: inline-flex;
+    border-radius: 5px;
+
+    .error-list {
+      list-style: none;
+      padding: 10px 20px;
+    }
+  }
+
+  &.full-width {
+    .ui.input {
+      width: 100%;
+
+      input, textarea {
+        width: 100%;
+      }
+    }
+  }
+}

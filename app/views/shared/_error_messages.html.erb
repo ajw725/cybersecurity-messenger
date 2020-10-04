@@ -1,0 +1,9 @@
+<% unless model.errors.empty? %>
+  <div class="flash-container error">
+    <ul class="error-list">
+      <% model.errors.full_messages.each do |error| %>
+        <li><%= error %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

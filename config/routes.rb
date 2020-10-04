@@ -13,10 +13,12 @@ Rails.application.routes.draw do
                sign_up: 'signup'
              },
              controllers: {
-               sessions: 'devise_overrides/sessions'
-             }
+               registrations: 'devise_overrides/registrations',
+               sessions: 'devise_overrides/sessions',
+               confirmations: 'devise_overrides/confirmations'
+  }
 
-  resources :messages, only: [:index]
+  resources :messages, except: %i[edit update]
 
   get '/dbdump', to: 'database_dumps#index', as: 'database_dumps'
   get '/dump_database', to: 'database_dumps#dump', as: 'dump_database'

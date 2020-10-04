@@ -1,0 +1,39 @@
+<div class="ui one column grid">
+  <div class="row">
+    <div class="column">
+      <h1>New Message</h1>
+
+      <%= form_with model: @message, local: true, class: 'full-width' do |f| %>
+        <%= render 'shared/error_messages', model: @message %>
+
+        <div class="field">
+          <label for="recipient">Recipient</label>
+          <br>
+          <div class="ui input">
+            <%= text_field_tag 'recipient' %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :subject %>
+          <br>
+          <div class="ui input">
+            <%= f.text_field :subject %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.label :body %>
+          <br>
+          <div class="ui input">
+            <%= f.text_area :body, rows: 10 %>
+          </div>
+        </div>
+
+        <div class="field">
+          <%= f.submit 'Send', class: 'ui button primary' %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
