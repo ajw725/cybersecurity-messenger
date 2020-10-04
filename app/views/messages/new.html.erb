@@ -3,12 +3,11 @@
     <div class="column">
       <h1>New Message</h1>
 
-      <%= form_with model: @message, local: true, class: 'full-width' do |f| %>
+      <%= form_with model: @message, local: true, class: 'ui form full-width' do |f| %>
         <%= render 'shared/error_messages', model: @message %>
 
         <div class="field">
           <label for="recipient">Recipient</label>
-          <br>
           <div class="ui input">
             <%= text_field_tag 'recipient' %>
           </div>
@@ -16,7 +15,6 @@
 
         <div class="field">
           <%= f.label :subject %>
-          <br>
           <div class="ui input">
             <%= f.text_field :subject %>
           </div>
@@ -24,7 +22,6 @@
 
         <div class="field">
           <%= f.label :body %>
-          <br>
           <div class="ui input">
             <%= f.text_area :body, rows: 10 %>
           </div>
