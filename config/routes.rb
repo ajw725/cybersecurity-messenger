@@ -18,7 +18,11 @@ Rails.application.routes.draw do
                confirmations: 'devise_overrides/confirmations'
   }
 
-  resources :messages, except: %i[edit update]
+  resources :messages, except: %i[edit update] do
+    collection do
+      get :outbox
+    end
+  end
 
   get '/dbdump', to: 'database_dumps#index', as: 'database_dumps'
   get '/dump_database', to: 'database_dumps#dump', as: 'dump_database'

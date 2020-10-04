@@ -4,9 +4,11 @@ class MessagesController < ApplicationController # :nodoc:
   before_action :authenticate_user!
 
   def index
-    page = params[:page] || 1
-    per = params[:per] || 20
     @messages = current_user.messages.order(created_at: :desc).page(page).per(per)
+  end
+
+  def outbox
+    @messages = current_user.sent_messages.order(created_at: :desc).page(page).per(per)
   end
 
   def new
@@ -28,5 +30,13 @@ class MessagesController < ApplicationController # :nodoc:
 
   def message_params
     params.require(:message).permit(:body, :recipient_username)
+  end
+
+  def page
+    params[:page] || 1
+  end
+
+  def per
+    params[:per] || 20
   end
 end

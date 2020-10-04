@@ -16,6 +16,14 @@ class Message < ApplicationRecord
   validate :self_message
   before_create :set_recipient
 
+  def sender_name
+    sender&.username || '<UnknownUser>'
+  end
+
+  def recipient_name
+    recipient&.username || '<UnknownUser>'
+  end
+
   private
 
   def check_recipient

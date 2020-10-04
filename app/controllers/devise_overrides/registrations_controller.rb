@@ -3,6 +3,17 @@
 module DeviseOverrides
   class RegistrationsController < Devise::RegistrationsController # :nodoc:
 
+    skip_before_action :require_no_authentication, only: :new
+
+    def new
+      if user_signed_in?
+        redirect_to messages_path, flash: { alert: 'You are already signed in.' }
+        return
+      end
+
+      super
+    end
+
     private
 
     def after_sign_up_path_for(*_args)

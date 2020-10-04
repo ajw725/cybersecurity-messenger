@@ -1,10 +1,10 @@
-<h1>Inbox</h1>
+<h2>Inbox</h2>
 
-<%= link_to new_message_path do %>
-  <button class="ui button primary">
-    Send a message
-  </button>
-<% end %>
+<h4>
+  <%= link_to 'View sent messages', outbox_messages_path %>
+</h4>
+
+<%= link_to 'Send a message', new_message_path, class: 'ui button primary' %>
 
 <h2>Received Messages:</h2>
 <%= render @messages %>

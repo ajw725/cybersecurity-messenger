@@ -1,5 +1,9 @@
 <div class="ui one column grid">
   <div class="column">
-    <%= message.sender.username %> says: <%= message.body %>
+    <% if local_assigns[:sent] %>
+      You wrote to <%= message.recipient_name %>: <%= message.body %>
+    <% else %>
+      <%= message.sender_name %> says: <%= message.body %>
+    <% end %>
   </div>
 </div>

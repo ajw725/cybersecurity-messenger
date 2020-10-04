@@ -1,0 +1,11 @@
+<h2>Outbox</h2>
+
+<h4>
+  <%= link_to 'Go to inbox', messages_path %>
+</h4>
+
+<%= link_to 'Send a message', new_message_path, class: 'ui button primary' %>
+
+<h2>Sent Messages:</h2>
+<%= render @messages, sent: true %>
+<%= paginate @messages %>

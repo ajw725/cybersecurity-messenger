@@ -19,11 +19,13 @@
     <div class="main-content">
       <div class="ui container">
         <% flash.each do |type, message| %>
-          <div class="ui centered grid flash-container <%= type %>">
-            <div class="column centered row message">
-              <p><%= message %></p>
+          <% if type != 'timedout' %>
+            <div class="ui centered grid flash-container <%= type %>">
+              <div class="column centered row message">
+                <p><%= message %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         <% end %>
 
         <%= render 'shared/nav' %>
