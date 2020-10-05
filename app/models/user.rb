@@ -7,6 +7,7 @@ class User < ApplicationRecord # :nodoc:
          :confirmable, :lockable, :timeoutable
 
   validates :email, :username, presence: true
+  validates_uniqueness_of :username
   validates_email_format_of :email, message: 'is not a valid email address'
 
   has_many :sent_messages, class_name: 'Message', foreign_key: :sender_id, dependent: :nullify
