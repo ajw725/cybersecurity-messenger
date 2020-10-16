@@ -49,7 +49,7 @@ Rails.application.configure do
     config.action_mailer.smtp_settings = {
       address: ENV['SMTP_ADDRESS'],
       port: 587,
-      domain: 'andrewsapp.app',
+      domain: 'mail.andrewsapp.app',
       user_name: Rails.application.credentials.smtp_username,
       password: Rails.application.credentials.smtp_password,
       authentication: :login,
